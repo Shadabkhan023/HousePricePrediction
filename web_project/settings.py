@@ -28,7 +28,12 @@ SECRET_KEY = 'django-insecure-()6_!$57y!1wt)4ei^wp5hxk(ah33_n!6vb1yr7*+$n4#!nc^8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['hppmlmodel.streamlit.app']
+ALLOWED_HOSTS = []
+
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+
 
 
 # Application definition

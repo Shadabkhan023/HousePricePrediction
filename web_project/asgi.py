@@ -10,14 +10,18 @@ https://docs.djangoproject.com/en/5.1/howto/deployment/asgi/
 import os
 import pandas as pd
 
-# Get the directory where the current script is located
+# Determine the base directory
 base_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Construct the full path to the dataset
 dataset_path = os.path.join(base_dir, 'data', 'house_price_dataset.csv')
 
 # Load the dataset
-df = pd.read_csv(dataset_path)
+try:
+    data = pd.read_csv(dataset_path)
+except FileNotFoundError:
+    print(f"Error: The file {dataset_path} does not exist.")
+
 
 
 from django.core.asgi import get_asgi_application

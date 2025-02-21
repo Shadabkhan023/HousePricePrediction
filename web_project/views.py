@@ -1,10 +1,13 @@
 from django.shortcuts import render
 import pandas as pd
+import os
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import LabelEncoder
 from django.shortcuts import render
+from django.conf import settings
+from django.http import HttpResponse
 
 def home(request):
     return render(request, 'home.html')
@@ -14,7 +17,12 @@ def predict(request):
 
 def result(request):
      # Load dataset
-    data = pd.read_csv("data/house_price_dataset.csv")
+    dataset_path = os.path.join(settings.BASE_DIR, 'data', 'house_price_dataset.csv')
+
+    
+    data = pd.read_csv(dataset_path)
+        
+
     
     # Encode categorical 'Location' column
     label_encoder = LabelEncoder()

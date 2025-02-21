@@ -14,7 +14,7 @@ def predict(request):
 
 def result(request):
      # Load dataset
-    data = pd.read_csv(r"C:\Users\shadab khan\Desktop\house_price_dataset.csv")
+    data = pd.read_csv("data/house_price_dataset.csv")
     
     # Encode categorical 'Location' column
     label_encoder = LabelEncoder()
